@@ -13,7 +13,7 @@
         <h4 class="card-title">Libros</h4>
 
         <div class="table-responsive">
-            <table class="table table-primary">
+            <table class="table table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -24,16 +24,21 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    {% for libro in libros %}
                     <tr class="">
-                        <td>1</td>
-                        <td>Django con Python</td>
-                        <td>Imagen.jpg</td>
-                        <td>Libro que habla sobre el framework de django</td>
+                        <td>{{ libro.id }}</td>
+                        <td>{{ libro.titulo }}</td>
+                        <td>
+                        <img src="{{ libro.imagen.url }}"height="100"/>
+
+                        </td>
+                        <td>{{ libro.descripcion }}</td>
                         <td> <a
                             name=""
                             id=""
                             class="btn btn-info"
-                            href="{% url 'editar' %}"
+                            href="{% url 'editar' libro.id %}"
                             role="button"
                             >Editar</a>
                          | 
@@ -41,17 +46,20 @@
                             name=""
                             id=""
                             class="btn btn-danger"
-                            href="#"
+                            href="{% url 'eliminar' libro.id %}"
                             role="button"
                             >Borrar</a>
                         </td>
                     </tr>
+                    {% endfor %}
+
+
                 </tbody>
             </table>
         </div>
 
     </div>
-    <div class="card-footer text-muted">Footer</div>
+    <div class="card-footer text-muted"></div>
 </div>
 
 
